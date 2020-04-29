@@ -1,0 +1,113 @@
+package com.ldg.map;
+
+/**
+ * 红黑树实现映射一:直接声明可以存放键值对的红黑树
+ *
+ * @author ldg
+ *
+ * @param <K>
+ * @param <V>
+ */
+@SuppressWarnings("unused")
+public class TreeMap<K, V> implements Map<K, V> {
+	// 颜色常量
+	private static final boolean RED = true;
+	private static final boolean BLACK = false;
+
+	@Override
+	public int size() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public V put(K key, V value) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public V remove(V value) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean containsKey(K key) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean containsValue(V value) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void traversal(Visitor<V> visitor) {
+		// TODO Auto-generated method stub
+
+	}
+
+	private static class Node<K, V> {
+		// 默认是红色
+		private boolean color = RED;
+
+		K key;
+		V value;
+		Node<K, V> parent;
+		Node<K, V> left;
+		Node<K, V> right;
+
+		// 判断该节点是否为叶子节点
+		public boolean isLeaf() {
+			return left == null && right == null;
+		}
+
+		// 判断该节点度是否为2
+		public boolean hasTwoChildren() {
+			return left != null && right != null;
+		}
+
+		// 对&来说，无论第一个表达式为真还是为假，都会继续执行第二个表达式判断；
+		// &&当第一个表达式为false的时候，不再继续执行对后边表达式的判断。
+		// 当前节点是否为父节点的左节点
+		public boolean isLeftNode() {
+
+			return parent != null && this == parent.left;
+		}
+
+		// 当前节点是否为父节点的右节点
+		public boolean isRightNode() {
+
+			return parent != null && this == parent.right;
+		}
+
+		// 获取兄弟节点
+		public Node<K, V> getSibling() {
+
+			if (isLeftNode()) {
+				return parent.right;
+			} else if (isRightNode()) {
+				return parent.left;
+			} else {
+				return null;
+			}
+		}
+
+		public Node(K key, V value, Node<K, V> parent) {
+			this.key = key;
+			this.value = value;
+			this.parent = parent;
+		}
+
+	}
+
+}

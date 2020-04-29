@@ -1,0 +1,10 @@
+package 栈;
+
+public class _20_有效的括号 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,23 @@
+import com.ldg.set.ListSet;
+import com.ldg.set.Set;
+import com.ldg.set.Set.Vistor;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Set<Integer> set=new   ListSet<Integer>();
+		set.add(15);
+		set.add(45);
+		set.add(8);
+		System.out.println(set.size());
+		set.traversal(new  Vistor<Integer>() {
+			
+			@Override
+			public boolean visit(Integer element) {
+				System.out.println(element);
+				return false;
+			}
+		});
+	
+
+}

@@ -1,0 +1,5 @@
+package com.ldg.set;
+
+public interface Set {
+
+}

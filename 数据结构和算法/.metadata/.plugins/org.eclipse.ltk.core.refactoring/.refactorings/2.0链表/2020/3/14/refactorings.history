@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy package &apos;com.ldg&apos; to &apos;3.0栈/src&apos;&#x0D;&#x0A;- Original project: &apos;2.0链表&apos;&#x0D;&#x0A;- Destination element: &apos;3.0栈/src&apos;&#x0D;&#x0A;- Original element: &apos;2.0链表/src/com.ldg&apos;" description="Copy package" destination="=3.0栈/src" element1="/src&lt;com.ldg" flags="589830" fragments="1" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1585633969622" version="1.0"/>
+</session>

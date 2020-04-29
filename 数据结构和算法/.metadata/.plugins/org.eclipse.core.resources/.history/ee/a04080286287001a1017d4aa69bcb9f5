@@ -1,0 +1,25 @@
+
+
+import com.ldg.map.Map.Visitor;
+
+public class Main {
+
+	public static void main(String[] args) {
+		TreeMap<String, Integer> treeMap = new TreeMap<String, Integer>();
+		treeMap.put("你好", 4);
+		treeMap.put("憨憨", 4);
+		treeMap.put("憨逼", 4);
+		treeMap.put("憨货", 4);
+		System.out.println(treeMap.size());
+		System.out.println(treeMap.get("a"));
+		treeMap.traversal(new Visitor<String, Integer>() {
+
+			@Override
+			public boolean visit(String string, Integer value) {
+				System.out.println(string + "_" + value);
+				return false;
+			}
+		});
+	}
+
+}

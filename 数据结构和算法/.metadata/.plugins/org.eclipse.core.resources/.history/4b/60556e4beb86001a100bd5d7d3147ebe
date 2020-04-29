@@ -1,0 +1,27 @@
+package com.ldg.set;
+
+public interface Set<T> {
+
+	int size();
+
+	boolean isEmpty();
+
+	void clear();
+
+	boolean contains(T element);
+
+	void add(T element);
+
+	void remove(T element);
+
+	void traversal(Vistor<T> vistor);
+
+	public static abstract class Vistor<T> {
+		// 是否停止标志
+		boolean flag;
+
+		public void visit() {
+		}
+	}
+
+}

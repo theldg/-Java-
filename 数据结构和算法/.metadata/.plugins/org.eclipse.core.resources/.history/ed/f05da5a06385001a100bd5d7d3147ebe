@@ -1,0 +1,256 @@
+package com.ldg.tree;
+
+public class RBTree<T> extends BalanceBinarySearchTree<T> {
+	// 颜色常量
+	private static final boolean RED = true;
+	private static final boolean BLACK = false;
+
+	private class RBNode<T> extends Node<T> {
+		// 默认是红色
+		private boolean color = RED;
+
+		public RBNode(T element, Node<T> parent) {
+			super(element, parent);
+
+		}
+
+		@Override
+		public String toString() {
+			if (parent != null) {
+
+				return element + ":" + (color == true ? "r" : "h") + " p:" + parent.element;
+
+			}
+			return element + ":" + (color == true ? "r" : "h") + " p:";
+
+		}
+
+	}
+
+	/**
+	 * 判断节点的颜色 空节点默认是黑色的
+	 * 
+	 * @param node
+	 * @return false：黑色 ， true：红色
+	 */
+	private boolean colorOf(Node<T> node) {
+		return node == null ? BLACK : ((RBNode) node).color;
+	}
+
+	/**
+	 * 判断节点是否为黑色
+	 * 
+	 * @param node
+	 * @return
+	 */
+	private boolean isBlack(Node<T> node) {
+		return colorOf(node) == BLACK;
+	}
+
+	/**
+	 * 判断节点是否为红色
+	 * 
+	 * @param node
+	 * @return
+	 */
+	private boolean isRed(Node<T> node) {
+		return colorOf(node) == RED;
+	}
+
+	/**
+	 * 改变节点的颜色
+	 * 
+	 * @param node
+	 * @param color
+	 * @return 返回改变后的节点
+	 */
+	private RBNode<T> changeColor(Node<T> node, boolean color) {
+		if (node != null)
+			((RBNode) node).color = color;
+		return (RBNode) node;
+	}
+
+	/**
+	 * 将节点变成黑色
+	 * 
+	 * @param node
+	 * @return
+	 */
+	private RBNode<T> black(Node<T> node) {
+		return changeColor(node, BLACK);
+	}
+
+	/**
+	 * 将节点变成红色
+	 * 
+	 * @param node
+	 * @return
+	 */
+	private RBNode<T> red(Node<T> node) {
+		return changeColor(node, RED);
+	}
+
+	// 创建自己的子节点
+	@Override
+	protected Node<T> createNode(T element, Node<T> parent) {
+
+		return new RBNode(element, parent);
+	}
+
+	// 添加元素后要进行的操作
+	@Override
+	protected void afterAdd(Node<T> node) {
+		// 添加的是根节点
+		if (node.parent == null) {
+			black(node);
+
+			return;
+		}
+		// 父节点是黑色
+		if (isBlack(node.parent)) {
+
+			return;
+		} else {// 父节点不是黑色
+			// 祖父节点
+			Node<T> grand = node.parent.parent;
+			// 父节点
+			Node<T> parent = node.parent;
+			// 叔父节点是红色
+			if (isRed(node.parent.getSibling())) {
+				black(parent);
+				black(parent.getSibling());
+				afterAdd(red(grand));
+				return;
+			}
+			// 叔父节点不是红色
+			// L
+			if (node.parent.isLeftNode()) {
+				// LL
+				red(grand);
+
+				if (node.isLeftNode()) {
+					black(node.parent);
+
+				} else {// LR
+					black(node);
+					rotateleft(parent);
+
+				}
+				rotateRight(grand);
+			} else {// R
+				red(grand);
+
+				// RL
+				if (node.isLeftNode()) {
+					black(node);
+
+					rotateRight(parent);
+					rotateleft(grand);
+				} else {// RR
+
+					black(parent);
+					rotateleft(grand);
+
+				}
+
+			}
+
+		}
+
+	}
+
+	protected void afterRemove(Node<T> node) {
+		// 删除的是红色节点
+		if (isRed(node)) {
+			return;
+		} else {
+
+			// 删除节点的子节点都是黑色 【null 是黑色】
+			if (isBlack(node.left) && isBlack(node.right)) {
+				// 获取该节点的兄弟节点
+				Node<T> sibling = node.getSibling();
+				// 获取父节点
+				Node<T> parent = node.parent;
+				// 该节点是右节点
+				if (node.isRightNode()) {
+
+					if (isRed(sibling.right)) {
+						// 兄弟节点的右子节点是红色
+						changeColor(sibling.right, ((RBNode) parent).color);
+						changeColor(sibling, BLACK);
+						changeColor(parent, BLACK);
+						rotateleft(sibling);
+						rotateRight(parent);
+
+					} else if (isRed(sibling.left)) {
+						// 兄弟节点的左子节点是红色
+						changeColor(sibling, ((RBNode) parent).color);
+						changeColor(sibling.left, BLACK);
+						changeColor(parent, BLACK);
+						rotateRight(parent);
+
+					} else {
+						// 兄弟节点没有红色子节点
+						if (isBlack(parent)) {
+
+							afterRemove(parent);
+						} else {
+							changeColor(parent, BLACK);
+							changeColor(sibling, RED);
+						}
+
+					}
+
+				} else {
+					// 该节点是左节点
+					if (isRed(sibling.left)) {
+						// 兄弟节点的右子节点是红色
+						changeColor(sibling.left, ((RBNode) parent).color);
+						changeColor(sibling, BLACK);
+						changeColor(parent, BLACK);
+						rotateRight(sibling);
+						rotateleft(parent);
+
+					} else if (isRed(sibling.right)) {
+						// 兄弟节点的左子节点是红色
+						changeColor(sibling, ((RBNode) parent).color);
+						changeColor(sibling.right, BLACK);
+						changeColor(parent, BLACK);
+						rotateleft(parent);
+
+					} else {
+						// 兄弟节点没有红色子节点
+						if (isBlack(parent)) {
+
+							afterRemove(parent);
+						} else {
+							changeColor(parent, BLACK);
+							changeColor(sibling, RED);
+						}
+
+					}
+				}
+
+			} else {
+				// 删除节点的子节点至少有一个红色
+
+				// 删除节点的两个子节点都是红色
+				if (isRed(node.left) && isRed(node.right)) {
+					return;
+				} else {
+					// 删除节点只有一个子节点是红色
+
+					if (isRed(node.left)) {
+						black(node.left);
+						return;
+					} else {
+						black(node.right);
+						return;
+					}
+
+				}
+
+			}
+		}
+	}
+}

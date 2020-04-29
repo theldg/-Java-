@@ -1,0 +1,74 @@
+package com.ldg.BubbleSort;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Integer[] array = new Integer[] { 0, 456416, 15,1 };
+		
+		for (int end = array.length; end > 1; end--) {
+			
+			for (int begin = 1; begin <end; begin++) {
+				if (array[begin] < array[begin - 1]) {
+					int temp = array[begin];
+					array[begin] = array[begin - 1];
+					array[begin - 1] = temp;
+					
+				}
+			}
+			
+		}
+
+		for (Integer i : array) {
+			System.out.print(i + "_");
+		}
+
+	}
+
+	// 冒泡排序优化：可以检测原来是否有序的。
+	private static void bubbleSort02() {
+		Integer[] array = new Integer[] { 0, 4551, 15, 78, 1, 2, 3, 6, 4 };
+		for (int end = array.length; end > 1; end--) {
+			// 是否停止
+			boolean flag = false;
+
+			for (int begin = 1; begin < end; begin++) {
+
+				if (array[begin] < array[begin - 1]) {
+					int temp = array[begin];
+					array[begin] = array[begin - 1];
+					array[begin - 1] = temp;
+					flag = true;
+
+				}
+			}
+			if (flag)
+				break;
+		}
+
+		for (Integer i : array) {
+			System.out.print(i + "_");
+		}
+	}
+
+	// 冒泡排序原版
+	private static void bubbleSort01() {
+		Integer[] array = new Integer[] { 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
+
+		for (int end = array.length; end > 1; end--) {
+			for (int begin = 1; begin < end; begin++) {
+				// 比较
+				if (array[begin] < array[begin - 1]) {
+					int temp = array[begin];
+					array[begin] = array[begin - 1];
+					array[begin - 1] = temp;
+				}
+			}
+		}
+		// 3 2 1
+
+		for (Integer i : array) {
+			System.out.print(i + "_");
+		}
+	}
+
+}

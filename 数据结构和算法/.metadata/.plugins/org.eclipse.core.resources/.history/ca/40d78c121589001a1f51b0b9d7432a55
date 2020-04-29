@@ -1,0 +1,34 @@
+package com.ldg.main;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Main {
+
+	public static void main(String[] args) {
+		test();
+		
+	}
+
+	private static void test() {
+		// float转为int
+		float f = 14.3f;
+		int i = Float.floatToIntBits(f);
+		System.out.println(i);
+		// long转为int
+		long l = 14;
+		i = (int) (l ^ (l >>> 32));
+		System.out.println(i);
+		// double转int
+		double d = 14.3;
+		//无符号右移32位
+		//异或运算
+		//充分利用高32位与低32位
+		i = (int) (Double.doubleToLongBits(d) ^ (Double.doubleToLongBits(d) >>> 32));
+		System.out.println(i);
+		System.out.println(i & (8-1));//0~7
+		System.out.println(i%8);
+		Map< String, Integer> hashMap=new HashMap<String, Integer>();
+	}
+
+}

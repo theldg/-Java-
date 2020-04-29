@@ -1,0 +1,28 @@
+package com.ldg.map;
+
+public interface Map<K, V> {
+
+	int size();
+
+	boolean isEmpty();
+
+	V put(K key, V value);
+
+	V remove(V value);
+
+	boolean containsKey(K key);
+
+	boolean containsValue(V value);
+
+	void traversal(Visitor<V> visitor);
+
+	public static abstract class Visitor<V> {
+
+		// 是否停止显示
+		boolean flag;
+
+		// 如何显示一个元素
+		public abstract boolean visit(V value);
+	}
+
+}

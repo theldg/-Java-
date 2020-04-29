@@ -1,0 +1,32 @@
+package com.ldg.BubbleSort;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		bubbleSort01();
+
+	}
+
+	// 冒泡排序原版
+	private static void bubbleSort01() {
+		Integer[] array = new Integer[] { 1, 2, 5, 7, 4, 8, 1 };
+        
+		for(int end=array.length;end>0;end--) {
+			for (int begin = 1; begin < end; begin++) {
+				//比较
+				if (array[begin] < array[begin - 1]) {
+					int temp = array[begin];
+					array[begin] = array[begin - 1];
+					array[begin - 1] = array[begin];
+				}
+			}
+		}
+		
+
+		for (Integer i : array) {
+			System.out.print(i);
+		}
+	}
+
+}

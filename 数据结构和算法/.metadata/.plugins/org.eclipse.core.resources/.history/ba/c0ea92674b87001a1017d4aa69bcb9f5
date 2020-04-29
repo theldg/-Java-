@@ -1,0 +1,55 @@
+package com.ldg.map;
+
+/**
+ * 红黑树实现映射一:直接声明可以存放键值对的红黑树
+ *
+ * @author ldg
+ *
+ * @param <K>
+ * @param <V>
+ */
+public class TreeMap<K, V> implements Map<K, V> {
+
+	@Override
+	public int size() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public V put(K key, V value) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public V remove(V value) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean containsKey(K key) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean containsValue(V value) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void traversal(Visitor<V> visitor) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

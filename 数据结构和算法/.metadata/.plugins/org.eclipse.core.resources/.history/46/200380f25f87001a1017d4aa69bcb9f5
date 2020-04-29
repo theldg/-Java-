@@ -1,0 +1,23 @@
+package com.ldg.map;
+
+import com.ldg.map.Map.Visitor;
+
+public class Main {
+
+	public static void main(String[] args) {
+		TreeMap<String, Integer> treeMap = new TreeMap<String, Integer>();
+		treeMap.put("a", 4);
+		treeMap.put("g", 4);
+		treeMap.put("e", 4);
+		treeMap.put("q", 4);
+		treeMap.traversal(new Visitor<String, Integer>() {
+
+			@Override
+			public boolean visit(String string, Integer value) {
+				System.out.println(string + "_" + value);
+				return false;
+			}
+		});
+	}
+
+}

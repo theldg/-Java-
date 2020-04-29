@@ -1,0 +1,5 @@
+package com.ldg.map;
+
+public interface Map<K, V> {
+
+}

@@ -1,0 +1,5 @@
+package com.ldg.set;
+
+public class ListTree implements Set<T> {
+
+}

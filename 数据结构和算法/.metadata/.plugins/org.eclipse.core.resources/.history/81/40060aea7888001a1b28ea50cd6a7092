@@ -1,0 +1,26 @@
+package com.ldg.BubbleSort;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		Integer[] array = new Integer[] { 1, 2, 5, 7, 4, 8, 1 };
+
+		for (int end = array.length; end > 0; end--) {
+			for (int begin =0; begin <end-1; begin++) {
+				if (array[begin+1] < array[begin]) {
+					int temp = array[begin];
+					array[begin] = array[begin+1];
+					array[begin+1] = temp;
+				}
+			}
+		}
+		
+		for(Integer i:array)
+		{
+			System.out.print(i);
+		}
+
+	}
+
+}

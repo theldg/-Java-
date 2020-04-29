@@ -1,0 +1,54 @@
+package com.ldg.main;
+
+import com.ldg.map.HashMap;
+import com.ldg.map.Map;
+import com.ldg.map.Map.Visitor;
+import com.ldg.model.Car;
+import com.ldg.printer.BinaryTreeInfo;
+import com.ldg.printer.BinaryTrees;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Map<Car, Object> map = new HashMap<Car, Object>();
+		map.put(new Car("a", 12), 12);
+		map.put(new Car("a", 12), 12);
+		map.put(new Car("b", 16), 12);
+		map.put(new Car("a", 17), 12);
+		map.put(new Car("d", 18), 12);
+		map.put(new Car("d", 18), 19);
+        System.out.println(map.get(new Car("d", 18)));
+		System.out.println(map.size());
+		map.traversal(new Visitor<Car, Object>() {
+
+			@Override
+			public boolean visit(Car key, Object value) {
+
+				return false;
+			}
+		});
+
+	}
+
+	private static void test() {
+		// float转为int
+		float f = 14.3f;
+		int i = Float.floatToIntBits(f);
+		System.out.println(i);
+		// long转为int
+		long l = 14;
+		i = (int) (l ^ (l >>> 32));
+		System.out.println(i);
+		// double转int
+		double d = 14.3;
+		// 无符号右移32位
+		// 异或运算
+		// 充分利用高32位与低32位
+		i = (int) (Double.doubleToLongBits(d) ^ (Double.doubleToLongBits(d) >>> 32));
+		System.out.println(i);
+		System.out.println(i & (8 - 1));// 0~7
+		System.out.println(i % 8);
+		Map<String, Integer> hashMap = new HashMap<String, Integer>();
+	}
+
+}

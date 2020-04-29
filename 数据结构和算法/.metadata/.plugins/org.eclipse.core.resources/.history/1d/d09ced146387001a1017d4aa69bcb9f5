@@ -1,0 +1,20 @@
+
+import com.ldg.map.Map.Visitor;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.Reader;
+
+import com.ldg.map.TreeMap;
+
+public class Main {
+
+	public static void main(String[] args) throws FileNotFoundException {
+
+		Reader reader = new FileReader("test.txt");
+		BufferedReader bufferedReader = new BufferedReader(reader);
+	}
+
+}

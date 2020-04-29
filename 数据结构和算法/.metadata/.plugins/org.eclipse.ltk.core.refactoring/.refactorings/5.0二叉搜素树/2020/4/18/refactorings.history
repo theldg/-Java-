@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;test.txt&apos; to &apos;9.0映射/src&apos;&#x0D;&#x0A;- Original project: &apos;5.0二叉搜素树&apos;&#x0D;&#x0A;- Destination element: &apos;9.0映射/src&apos;&#x0D;&#x0A;- Original element: &apos;test.txt&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move file" destination="=9.0映射/src" element1="test.txt" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1587866596533" units="0" version="1.0"/>
+</session>
